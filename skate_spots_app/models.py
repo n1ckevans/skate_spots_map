@@ -118,7 +118,7 @@ class Comment(models.Model):
 class Marker(models.Model):
     name = models.CharField(max_length=60)
     photo = models.ImageField(
-        upload_to="images/media/images/", null=True, blank=True)
+        upload_to="images/", null=True, blank=True)
     lat = models.FloatField(null=True, blank=True, default=None)
     long = models.FloatField(null=True, blank=True, default=None)
     kind = models.CharField(max_length=60)

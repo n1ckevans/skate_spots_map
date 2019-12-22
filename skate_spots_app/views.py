@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 # from django.contrib.messages import get_messages
 from skate_spots_app.models import User, Message, Comment, Marker
+from skate_spots_app.forms import MarkerForm
 import bcrypt
 # from datetime import date, datetime
 # from geolocation.main import GoogleMaps
@@ -44,7 +45,8 @@ def register(request):
     hashed = bcrypt.hashpw(
         request.POST['password'].encode(), bcrypt.gensalt()).decode()
 
-    new_user = User.objects.create(first_name=request.POST['first_name'], last_name=request.POST['last_name'], email=request.POST['email'], password=hashed, birthday=request.POST['birthday'])
+    new_user = User.objects.create(first_name=request.POST['first_name'], last_name=request.POST['last_name'],
+                                   email=request.POST['email'], password=hashed, birthday=request.POST['birthday'])
     request.session['user_id'] = new_user.id
     return redirect("/home")
 
@@ -90,8 +92,18 @@ def spot(request):
 
 def create(request):
 
-    Marker.objects.create(name=request.POST['name'], photo=request.POST['photo'],
-                          lat=request.POST['lat'], long=request.POST['long'], kind=request.POST['kind'])
+    # Marker.objects.create(name=request.POST['name'], photo=request.POST['photo'],
+    #                       lat=request.POST['lat'], long=request.POST['long'], kind=request.POST['kind'])
+
+    if request.method == 'POST':
+        form = MarkerForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            return redirect("/home")
+        else:
+            form = MarkerForm()
+        return render(request, 'photo.html', {'form': form})
 
     return redirect("/home")
 

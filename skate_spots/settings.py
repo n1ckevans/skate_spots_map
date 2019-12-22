@@ -122,3 +122,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyADsKSJUx6DD63P26FsBj9BWC1vpByW1wo'
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
+MEDIA_URL = '/media/'

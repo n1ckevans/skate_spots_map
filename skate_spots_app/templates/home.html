@@ -84,7 +84,7 @@ function initMap() {
             '<p class="text-dark btn my-2 mx-2 text-center" id="firstHeading" class="firstHeading">' + 'Spot Type: ' + props.type + '</p>' +
             '<a href="/remove/' + props.id + '">Delete Spot</a>' +
             '<a href="/edit/' + props.id + '">Edit Spot</a>' +
-            '<IMG BORDER="0" ALIGN="Left" itemprop="image" src="{% static 'skate_spots_app/img/switchflip.gif' %}">' +
+            '<IMG BORDER="0" ALIGN="Left" itemprop="image" src="media/' + props.photo + '">' +
             '</div>'+
             '</div>';
     var infowindow = new google.maps.InfoWindow({
@@ -121,6 +121,7 @@ function initMap() {
       lng: {{ m.long }}
     },
       name: "{{ m.name }}",
+      photo: "{{m.photo}}",
       type: "{{ m.kind }}",
       id: "{{ m.id }}"
   });
