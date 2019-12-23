@@ -64,9 +64,10 @@
  
    <div style="background-color: transparent"  class="card text-white">
     <div class="card-body text-center">
-      <span class="logo_title mt-5 text-primary h3">EditSpot</span>
+      <span class="logo_title mt-5 text-primary h3">Edit Spot</span>
       <form action="/edit_spot/{{ spot.id}}" method="post">
         {% csrf_token %}
+        {{ form.as_p }}
         <div class="input-group form-group mt-2">
             <div style="background-color: black" class="d-block p-2 text-white">
                 <span  ">Spot Name:</span>
@@ -74,25 +75,25 @@
           <input type="text" name="name" class="form-control" placeholder="{{ spot.name }}">
         </div>
         
-        <div class="input-group form-group">
+        <!-- <div class="input-group form-group">
             <div style="background-color: black" class="d-block p-2 text-white">
                 <span class="mx-2">Image of Spot:</span>
               </div> 
           <input class="mx-2" type="file"
           id="photo" name="photo"
-          accept="image/png, image/jpeg">
-        </div>
+          accept="image/png, image/jpeg" placeholder="{{ spot.photo }}">
+        </div> -->
         <div class="input-group form-group">
             <div style="background-color: black" class="d-block p-2 text-white">
               <span  ">Latitude:</span>
             </div> 
-             <input type="text" name="lat" class="form-control rounded" placeholder="{{ spot.lat }}">
+             <input type="number" step="0.0000001" name="lat" class="form-control rounded" placeholder="{{ spot.lat }}">
          </div>
          <div class="input-group form-group">
           <div style="background-color: black" class="d-block p-2 text-white">
             <span  ">Longitude:</span>
           </div> 
-           <input type="text" name="long" class="form-control rounded" placeholder="{{ spot.long }}">
+           <input type="number" step="0.0000001" name="long" class="form-control rounded" placeholder="{{ spot.long }}">
        </div>
          <div class="input-group form-group">
             <div style="background-color: black" class="d-block p-2 text-white">
@@ -100,7 +101,15 @@
             </div> 
              <input type="text" name="kind" class="form-control rounded" placeholder="{{ spot.kind }}">
          </div>
-
+         <div class="input-group form-group mt-2">
+          <div
+            style="background-color: black"
+            class="d-block p-2 text-white"
+          >
+            <span>Description:</span>
+          </div>
+          <input type="text" name="desc" class="form-control rounded" placeholder="{{ spot.desc }}"/>
+        </div>
         <div class="form-group">
           <a class="btn btn-outline-primary float-left mx-2" href="/home">Cancel</a>
           <input type="submit" name="btn" value="Edit" class="btn btn-outline-primary float-left login_btn">

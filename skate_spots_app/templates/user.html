@@ -63,7 +63,7 @@
     <div class="card bg-dark text-white">
         <div class="card-body text-center">
           <span class="logo_title mt-5 text-primary h3">Update your profile</span>
-          <form action="/update/{{user.id}}" method="post">
+          <form action="/update/{{user.id}}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="input-group form-group mt-2">
                 <div class="d-block p-2 bg-dark text-white">
@@ -78,11 +78,11 @@
               <input type="text" name="last_name" class="form-control rounded" placeholder="{{user.last_name}}">
             </div>
             <div class="input-group form-group">
-               <div class="d-block p-2 bg-dark text-white">
-                 <span>Birthday:</span>
-               </div> 
-                <input type="date" name="birthday" class="form-control rounded">
-            </div>
+              <div class="d-block p-2 bg-dark text-white">
+                <span>Birthday:</span>
+              </div> 
+               <input type="date" name="birthday" class="form-control rounded">
+           </div>
             <div class="input-group form-group">
                 <div class="d-block p-2 bg-dark text-white">
                     <span>Password:</span>
@@ -96,11 +96,13 @@
               <input type="password" name="confirm_password" class="form-control rounded" placeholder="Confirm Password">
             </div>
             <div class="input-group form-group">
-                <div class="d-block p-2 bg-dark text-white">
-                    <span>Profile picture:</span>
-                  </div> 
-                <input type="file" name="photo" class="form-control rounded">
-              </div>
+              <div style="background-color: black" class="d-block p-2 text-white">
+                  <span class="mx-2">Profile Picture:</span>
+                </div> 
+            <input class="mx-2" type="file"
+            id="photo" name="photo"
+            accept="image/png, image/jpeg">
+          </div>
 
             <div class="form-group">
               <input type="submit" name="btn" value="Update" class="btn btn-outline-primary float-left login_btn">

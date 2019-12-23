@@ -69,7 +69,7 @@ class User(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     birthday = models.DateField()
     photo = models.ImageField(
-        upload_to="static/user_images/", null=True, blank=True)
+        upload_to="images/", null=True, blank=True)
     objects = UserManager()
 
     def __repr__(self):
@@ -122,13 +122,14 @@ class Marker(models.Model):
     lat = models.FloatField(null=True, blank=True, default=None)
     long = models.FloatField(null=True, blank=True, default=None)
     kind = models.CharField(max_length=60)
+    desc = models.CharField(max_length=120)
     site = models.ForeignKey(
         Site, on_delete=models.PROTECT, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __repr__(self):
-        return f"<Marker object: id: {self.id}, title: {self.name}>"
+        return f"<Marker object: id: {self.id}, photo: {self.photo}, title: {self.name}, desc: {self.desc}>"
 
     def __str__(self):
         return self.name

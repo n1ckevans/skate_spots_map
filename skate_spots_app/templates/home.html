@@ -1,135 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Let's Skate!</title>
+    {% load static %}
+    <link
+      rel="shortcut icon"
+      href="{% static 'skate_spots_app/img/favicon.ico' type='image/x-icon' %}"
+    />
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Let's Skate!</title>
-  {% load static %}	
-  <link rel="shortcut icon" href="{% static 'skate_spots_app/img/favicon.ico' type='image/x-icon' %}">
-
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<style>
-  #map {
-    height: 450px;
-    width: 100%;
-  }
-</style>
-
-</head>
-<body class="bg-dark text-white">
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <style>
+      #map {
+        /* height: 450px;
+        width: 100%; */
+        margin: 20px 0;
+        padding: 0;
+        height: 450px;
+        float: left;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body class="bg-dark text-white">
     <div class="container">
-   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
-  
-   <nav class="navbar navbar-expand navbar-dark rounded bg-primary">
-    <a class="navbar-brand" >Hello {{ user.first_name }}!</a>
-    <div class="collapse navbar-collapse order-0 dual-collapse2" id="navbarSupportedContent">
-      
-      <span class="navbar-text text-white font-weight-bold mr-auto"></span>
-      
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <!-- change to add route -->
-            <a class="nav-link" href="/spot">Add A Spot</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="/home">Home</a>
-          </li>
-          <li class="nav-item active">
+      <link
+        rel="stylesheet"
+        href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      />
+
+      <nav class="navbar navbar-expand navbar-dark rounded bg-primary">
+        <a class="navbar-brand">Hello {{ user.first_name }}!</a>
+        <div
+          class="collapse navbar-collapse order-0 dual-collapse2"
+          id="navbarSupportedContent"
+        >
+          <span class="navbar-text text-white font-weight-bold mr-auto"></span>
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <!-- change to add route -->
+              <a class="nav-link" href="/spot">Add A Spot</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/home">Home</a>
+            </li>
+            <li class="nav-item active">
               <a class="nav-link" href="/wall">Message Board</a>
             </li>
-          <li class="nav-item active">
+            <li class="nav-item active">
               <a class="nav-link" href="/profile/{{user.id}}">Profile</a>
             </li>
 
-      <li class="nav-item active">
-        <a class="nav-link" href="/logout">Logout</a>
-      </li>
-      
-    </ul>
+            <li class="nav-item active">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-    </div>
-   </nav>
+      <div class="card bg-dark text-white">
+        <div class="card-body text-center">
+          <h1>Where do you want to skate?</h1>
+          <div id="map" style="position: relative; overflow: hidden; transform: translateZ(0px); background-color: rgb(229, 227, 223);"></div>
+        </div>
+      </div>
 
-   <div class="card bg-dark text-white">
-      <div class="card-body text-center">
-  <h1>Where do you want to skate?</h1>
-  <div id="map"></div>
-</div>
-</div>
+      <script>
+        //initialize map
+        function initMap() {
+          var map = new google.maps.Map(document.getElementById('map'), {
+              center: {lat:33.7669444, lng:-118.1883333 },
+              zoom: 9,
+          });
 
-<script>
-//initialize map
-function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat:33.7669444, lng:-118.1883333 },
-      zoom: 9,
-  });
- //change icon to skateboards
-  var icon = {
-          url: "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn2.iconfinder.com%2Fdata%2Ficons%2Fskateboarding-4%2F100%2FSkate_Complete-128.png&f=1&nofb=1", // url
-          scaledSize: new google.maps.Size(40, 40), // scaled size
-          origin: new google.maps.Point(0,0), // origin
-          anchor: new google.maps.Point(0, 0) // anchor
-  };
-  function addMarker(props){
-    var contentString = '<div id="content">'+
-            '<div id="siteNotice">'+
-            '</div>'+
-            '<h6 class="text-dark" id="firstHeading" class="firstHeading">'+ 'Spot: ' + props.name+'</h6>'+
-            '<p class="text-dark btn my-2 mx-2 text-center" id="firstHeading" class="firstHeading">' + 'Spot Type: ' + props.type + '</p>' +
-            '<a href="/remove/' + props.id + '">Delete Spot</a>' +
-            '<a href="/edit/' + props.id + '">Edit Spot</a>' +
-            '<IMG BORDER="0" ALIGN="Left" itemprop="image" src="media/' + props.photo + '">' +
-            '</div>'+
-            '</div>';
-    var infowindow = new google.maps.InfoWindow({
-          content: contentString
-         
-        });
-    
-    var marker = new google.maps.Marker({
-        position: props.coords,
-        title: props.title,
-        animation: google.maps.Animation.DROP,
-        map: map,
-        icon: icon,
-        clickable: true
-    });
-         
-        marker.addListener('click', function() {
-          infowindow.open(map, marker);
-    });
-        marker.addListener('click', toggleBounce);
-  }
-  function toggleBounce() {
-        if (marker.getAnimation() !== null) {
-          marker.setAnimation(null);
-        } else {
-          marker.setAnimation(google.maps.Animation.BOUNCE);
+          
+         //change icon to skateboards
+          var icon = {
+                  url: "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn2.iconfinder.com%2Fdata%2Ficons%2Fskateboarding-4%2F100%2FSkate_Complete-128.png&f=1&nofb=1", // url
+                  scaledSize: new google.maps.Size(40, 40), // scaled size
+                  origin: new google.maps.Point(0,0), // origin
+                  anchor: new google.maps.Point(0, 0) // anchor
+          };
+          function addMarker(props){
+            var contentString = '<div id="content">'+
+                    '<div id="siteNotice">'+
+                    '</div>'+
+                    '<h3 class="text-dark" id="firstHeading" class="firstHeading">'+  props.name+'</h3>'+
+                    '<h6 class="text-dark text-center" id="firstHeading" class="firstHeading">' + 'Spot Type: ' + props.type + '</h6>' +
+                    '<h6 class="text-dark my-2 mx-2 text-center" id="firstHeading" class="firstHeading">' + 'Description: ' + props.desc + '</h6>' +
+                    '<img class="mx-2 my-2" style="height: 100%; width: 100%;" border="0" align="center" itemprop="image" src="media/' + props.photo + '">' +
+                    '<div class="btn-group btn-group-justified">' +
+                    '<a class="mx-2 my-2 text-center btn btn-outline-primary d-inline-block login_btn" href="/remove/' + props.id + '">Delete Spot</a>' +
+                    '<a class="mx-2 my-2 text-center btn btn-outline-primary d-inline-block login_btn" href="/edit/' + props.id + '">Edit Spot</a>' +
+                    '</div>' +
+                    '</div>'+
+                    '</div>';
+            var infowindow = new google.maps.InfoWindow({
+                  content: contentString
+
+                });
+
+            var marker = new google.maps.Marker({
+                position: props.coords,
+                title: props.title,
+                animation: google.maps.Animation.DROP,
+                map: map,
+                icon: icon,
+                clickable: true
+            });
+
+                marker.addListener('click', function() {
+                  infowindow.open(map, marker);
+            });
+                marker.addListener('click', toggleBounce);
+          }
+          function toggleBounce() {
+                if (marker.getAnimation() !== null) {
+                  marker.setAnimation(null);
+                } else {
+                  marker.setAnimation(google.maps.Animation.BOUNCE);
+                }
+              }
+
+          {% for m in markers %}
+          addMarker({
+            coords:{
+              lat: {{ m.lat }},
+              lng: {{ m.long }}
+            },
+              name: "{{ m.name }}",
+              photo: "{{m.photo}}",
+              type: "{{ m.kind }}",
+              desc: "{{ m.desc }}",
+              id: "{{ m.id }}"
+          });
+          {% endfor %}
         }
-      }
- 
-  {% for m in markers %}
-  addMarker({
-    coords:{
-      lat: {{ m.lat }}, 
-      lng: {{ m.long }}
-    },
-      name: "{{ m.name }}",
-      photo: "{{m.photo}}",
-      type: "{{ m.kind }}",
-      id: "{{ m.id }}"
-  });
-  {% endfor %}
-}
-</script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADsKSJUx6DD63P26FsBj9BWC1vpByW1wo&callback=initMap">
-</script>
-</div>
-</body>
+      </script>
+      <script
+        async
+        defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADsKSJUx6DD63P26FsBj9BWC1vpByW1wo&callback=initMap"
+      ></script>
+    </div>
+  </body>
 </html>

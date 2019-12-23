@@ -56,7 +56,7 @@
     <!-- <div class="card-body bg-dark text-left text-white d-block"> -->
        
         
-        <img class="d-inline-block my-2" style="height: 30px; width: 30px;" alt="userlogo" src="{% static 'skate_spots_app/user_images/es.jpeg' %}"></img>
+        <img class="d-inline-block my-2" style="height: 30px; width: 30px;" alt="userlogo" src="media/{{message.user.photo}}"></img>
         <span class="logo_title text-primary">{{message.user.first_name}} {{message.user.last_name}} - {{message.created_at}} </span>
 
       <!-- </div> -->
@@ -69,11 +69,11 @@
     {% if comment.message.id == message.id %}
     {% if comment.user != message.user  %}
     <!-- <div class="card-body bg-dark text-left my-4 mx-4 py-2 text-white d-block"> -->
-        <img class="d-inline-block my-2" style="height: 30px; width: 30px;" alt="userlogo" src="{% static 'skate_spots_app/user_images/thundertrucks-logo.png' %}"></img>
+        <img class="d-inline-block my-2" style="height: 30px; width: 30px;" alt="userlogo" src="media/{{comment.user.photo}}"></img>
       {% endif %}
       {% if comment.user == message.user  %}
       <!-- <div class="card-body bg-dark text-left my-4 mx-4 py-2 text-white d-block"> -->
-          <img class="d-inline-block my-2" style="height: 30px; width: 30px;" alt="userlogo" src="{% static 'skate_spots_app/user_images/es.jpeg' %}"></img>
+          <img class="d-inline-block my-2" style="height: 30px; width: 30px;" alt="userlogo" src="media/{{comment.user.photo}}"></img>
         {% endif %}
 
       <span class="logo_title my-2 text-danger">{{comment.user.first_name}} {{comment.user.last_name}} - {{comment.created_at}} </span>

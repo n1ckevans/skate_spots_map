@@ -169,18 +169,18 @@ def profile(request, user_id):
 
 
 def update(request, user_id):
-    taken_user = User.objects.filter(email=request.POST['email'])
-    if taken_user:
-        messages.error(request, "Invalid credentials")
-        return redirect("/")
+    # taken_user = User.objects.filter(email=request.POST['email'])
+    # if taken_user:
+    #     messages.error(request, "Invalid credentials")
+    #     return redirect("/")
 
-    if not User.objects.is_reg_valid(request):
-        return redirect("/")
+    # if not User.objects.is_reg_valid(request):
+    #     return redirect("/")
 
-    user_id = request.session.get('user_id')
+    # user_id = request.session.get('user_id')
 
-    if not user_id:
-        return redirect("/")
+    # if not user_id:
+    #     return redirect("/")
 
     user = User.objects.get(id=user_id)
 
@@ -198,20 +198,21 @@ def update(request, user_id):
 
 def edit(request, spot_id):
     spot = Marker.objects.get(id=spot_id)
+    print(spot)
     context = {"spot": spot}
     return render(request, "edit.html", context)
 
 
 def edit_spot(request, spot_id):
 
-    spot = Marker.objects.get(id=spot_id)
+    this_spot = Marker.objects.get(id=spot_id)
 
-    spot.name = request.POST['name']
-    spot.photo = request.POST['photo']
-    spot.lat = request.POST['lat']
-    spot.long = request.POST['long']
-    spot.kind = request.POST['kind']
-
-    spot.save()
+    this_spot.name = request.POST['name']
+    # this_spot.photo = request.POST['photo']
+    this_spot.lat = request.POST['lat']
+    this_spot.long = request.POST['long']
+    this_spot.kind = request.POST['kind']
+    this_spot.desc = request.POST['desc']
+    this_spot.save()
 
     return redirect("/home")
