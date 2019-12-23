@@ -87,7 +87,11 @@ def wall(request):
 
 
 def spot(request):
-    return render(request, "spot.html")
+    user_id = request.session.get('user_id')
+    user = User.objects.get(id=user_id)
+
+    context = {"user": user}
+    return render(request, "spot.html", context)
 
 
 def create(request):
@@ -184,13 +188,14 @@ def update(request, user_id):
 
     user = User.objects.get(id=user_id)
 
-    hashed = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt())
+    hashed = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()
 
     user.first_name = request.POST['first_name']
     user.last_name = request.POST['last_name']
+    user.email = request.POST['email']
     user.password = hashed
     user.birthday = request.POST['birthday']
-    user.photo = request.POST['photo']
+    # user.photo = request.POST['photo']
     user.save()
 
     return redirect("/home")

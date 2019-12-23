@@ -6,10 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Let's Skate!</title>
     {% load static %}
-    <link
-      rel="shortcut icon"
-      href="{% static 'skate_spots_app/img/favicon.ico' type='image/x-icon' %}"
-    />
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' type='image/x-icon' %}">
 
     <link
       href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -48,9 +45,9 @@
             <li class="nav-item active">
               <a class="nav-link" href="/home">Home</a>
             </li>
-            <li class="nav-item active">
+            <!-- <li class="nav-item active">
               <a class="nav-link" href="/wall">Message Board</a>
-            </li>
+            </li> -->
             <li class="nav-item active">
               <a class="nav-link" href="/profile/{{user.id}}">Profile</a>
             </li>
@@ -98,7 +95,7 @@
                 style="background-color: black"
                 class="d-block p-2 text-white"
               >
-                <span class="mx-2">Image of Spot:</span>
+                <span class="mx-2">Photo:</span>
               </div>
               <input
                 class="mx-2"
@@ -146,6 +143,7 @@
             </div>
 
             <div class="form-group">
+              <a class="btn btn-outline-primary float-left mx-2" href="/home">Cancel</a>
               <input
                 type="submit"
                 name="btn"

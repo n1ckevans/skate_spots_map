@@ -8,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Message Board</title>
   {% load static %}	
-    <link rel="shortcut icon" href="{% static 'skate_spots_app/img/favicon.ico' type='image/x-icon' %}">
+  <link rel="shortcut icon" href="{% static 'img/favicon.ico' type='image/x-icon' %}">
   <link href="/YOUR_PATH/favicon.ico" rel="icon" type="image/x-icon" />
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -34,9 +34,9 @@
             <li class="nav-item active">
               <a class="nav-link" href="/home">Home</a>
             </li>
-            <li class="nav-item active">
+            <!-- <li class="nav-item active">
                 <a class="nav-link" href="/wall">Message Board</a>
-              </li>
+              </li> -->
             <li class="nav-item active">
                 <a class="nav-link" href="/profile/{{user.id}}">Profile</a>
               </li>
@@ -79,6 +79,12 @@
             </div>
             <div class="input-group form-group">
               <div class="d-block p-2 bg-dark text-white">
+                  <span>Email:</span>
+                </div> 
+            <input type="email" name="email" class="form-control rounded" placeholder="{{user.email}}">
+          </div>
+            <div class="input-group form-group">
+              <div class="d-block p-2 bg-dark text-white">
                 <span>Birthday:</span>
               </div> 
                <input type="date" name="birthday" class="form-control rounded">
@@ -95,17 +101,18 @@
                   </div> 
               <input type="password" name="confirm_password" class="form-control rounded" placeholder="Confirm Password">
             </div>
-            <div class="input-group form-group">
+            <!-- <div class="input-group form-group">
               <div style="background-color: black" class="d-block p-2 text-white">
                   <span class="mx-2">Profile Picture:</span>
                 </div> 
             <input class="mx-2" type="file"
             id="photo" name="photo"
             accept="image/png, image/jpeg">
-          </div>
+          </div> -->
 
             <div class="form-group">
               <input type="submit" name="btn" value="Update" class="btn btn-outline-primary float-left login_btn">
+              <a class="btn btn-outline-primary float-left mx-2" href="/home">Cancel</a>
             </div>
 
           </form>
