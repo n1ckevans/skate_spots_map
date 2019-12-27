@@ -7,6 +7,10 @@ from datetime import date, datetime, timedelta
 import timeago
 # import pytz
 from django.contrib.sites.models import Site
+from PIL import Image
+from django_s3_storage.storage import S3Storage
+
+storage = S3Storage(aws_s3_bucket_name='django-skate-spots')
 
 
 class UserManager(models.Manager):
@@ -117,8 +121,7 @@ class Comment(models.Model):
 
 class Marker(models.Model):
     name = models.CharField(max_length=60)
-    photo = models.ImageField(
-        upload_to="images/", null=True, blank=True)
+    photo = models.ImageField(storage=storage, null=True, blank=True)
     lat = models.FloatField(null=True, blank=True, default=None)
     long = models.FloatField(null=True, blank=True, default=None)
     kind = models.CharField(max_length=60)
@@ -133,3 +136,4 @@ class Marker(models.Model):
 
     def __str__(self):
         return self.name
+        

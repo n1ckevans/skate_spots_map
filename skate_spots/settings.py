@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'storages',
+    'django_s3_storage',
 ]
 
 MIDDLEWARE = [
@@ -116,39 +116,41 @@ USE_L10N = True
 
 USE_TZ = True
 
+SITE_ID = 1
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
+GEOPOSITION_GOOGLE_MAPS_API_KEY = os.environ.get(
+    'GEOPOSITION_GOOGLE_MAPS_API_KEY')
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATIC_URL = '/static/'
-
-GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyADsKSJUx6DD63P26FsBj9BWC1vpByW1wo'
-
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'mysite/static'),
-]
+AWS_REGION = 'us-west-1'
 
-AWS_ACCESS_KEY_ID = 'AKIAWYWMNNP3JOLCM36P'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 
-AWS_SECRET_ACCESS_KEY = 'wggNCT2612bOSCLW7dIh+VRlggpDzpr59A49stpc'
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
-AWS_STORAGE_BUCKET_NAME = 'django-skate-spots'
+AWS_S3_BUCKET_NAME = 'django-skate-spots'
 
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+# AWS_S3_BUCKET_NAME_STATIC = 'django-skate-spots'
 
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
+# AWS_S3_BUCKET_AUTH_STATIC = False
 
-AWS_LOCATION = 'static'
 
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+# DEFAULT_FILE_STORAGE = 'django_s3_storage.storage.StaticS3Storage'
 
-DEFAULT_FILE_STORAGE = 'mysite.storage_backends.MediaStorage'
+# STATICFILES_STORAGE = 'django_s3_storage.storage.ManifestStaticS3Storage'
+
+# AWS_S3_FILE_OVERWRITE = False
+
+# AWS_DEFAULT_ACL = None
+
+# AWS_QUERYSTRING_AUTH = False

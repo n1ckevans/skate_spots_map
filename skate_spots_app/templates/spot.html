@@ -13,20 +13,20 @@
     {% load static %}
     <link
       rel="shortcut icon"
-      href="{% static 'img/favicon.ico' type='image/x-icon' %}"
+      href="static/img/favicon.ico" type="image/x-icon"
     />
     <!-- Bootstrap CSS File -->
-    <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Libraries CSS Files -->
-    <link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
-    <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
-    <link href="{% static 'lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
-    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
-    <link href="{% static 'lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+    <link href="static/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="static/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="static/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="static/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
   
     <!-- Main Stylesheet File -->
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="static/css/style.css" rel="stylesheet">
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
@@ -71,6 +71,15 @@
         <div class="table-cell">
           <div class="container">
             <span class="logo_title mt-5 text-white mx-3 my-3 h3">Spot Details</span>
+            <section class="text-danger text-center">
+              {% if messages %}
+              <ul class="list-unstyled d-inline-block">
+                {% for message in messages %}
+                <li class="text-left">{{ message }}</li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </section>
             <form action="/create" method="post" enctype="multipart/form-data">
               {% csrf_token %}
               <!-- {{ form.as_p }}  -->
@@ -160,19 +169,19 @@
   
     <!-- JavaScript Libraries -->
     
-    <script src="{% static 'lib/jquery/jquery-migrate.min.js' %}"></script>
-    <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'lib/popper/popper.min.js' %}"></script>
-    <script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
-    <script src="{% static 'lib/counterup/jquery.waypoints.min.js' %}"></script>
-    <script src="{% static 'lib/counterup/jquery.counterup.js' %}"></script>
-    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
-    <script src="{% static 'lib/lightbox/js/lightbox.min.js' %}"></script>
-    <script src="{% static 'lib/typed/typed.min.js' %}"></script>
+    <script src="static/lib/jquery/jquery-migrate.min.js"></script>
+    <script src="static/lib/jquery/jquery.min.js"></script>
+    <script src="static/lib/popper/popper.min.js"></script>
+    <script src="static/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="static/lib/easing/easing.min.js"></script>
+    <script src="static/lib/counterup/jquery.waypoints.min.js"></script>
+    <script src="static/lib/counterup/jquery.counterup.js"></script>
+    <script src="static/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="static/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="static/lib/typed/typed.min.js"></script>
   
     <!-- Template Main Javascript File -->
-    <script src="{% static 'js/main.js' %}"></script>
+    <script src="static/js/main.js"></script>
   
   </body>
   </html>

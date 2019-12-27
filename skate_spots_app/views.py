@@ -7,7 +7,8 @@ import bcrypt
 # from datetime import date, datetime
 # from geolocation.main import GoogleMaps
 import json
-
+import boto3
+from django.views.generic import TemplateView
 
 def index(request):
     return render(request, "index.html")
@@ -56,6 +57,15 @@ def logout(request):
     return redirect('/')
 
 
+# class MarkerView(TemplateView):
+#     template_name = 'home.html'
+
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['markers'] = Marker.objects.all()
+#         return context
+
+
 def home(request):
     user_id = request.session.get('user_id')
 
@@ -97,19 +107,28 @@ def spot(request):
 def create(request):
 
     # Marker.objects.create(name=request.POST['name'], photo=request.POST['photo'],
-    #                       lat=request.POST['lat'], long=request.POST['long'], kind=request.POST['kind'])
+    #                       lat=request.POST['lat'], long=request.POST['long'], kind=request.POST['kind'], desc=request.POST['desc'])
+
+    # if request.method == 'POST':
+    #     form = MarkerForm(request.POST, request.FILES)
+
+    #     if form.is_valid():
+    #         form.save()
+    #         return redirect("/home")
+    #     else:
+    #         form = MarkerForm()
+    #     return render(request, 'photo.html', {'form': form})
 
     if request.method == 'POST':
         form = MarkerForm(request.POST, request.FILES)
 
         if form.is_valid():
             form.save()
+            messages.success(request, f'Your spot has been created!')
             return redirect("/home")
         else:
             form = MarkerForm()
-        return render(request, 'photo.html', {'form': form})
-
-    return redirect("/home")
+        return render(request, 'spot.html', {'form': form})
 
 
 def remove(request, spot_id):

@@ -13,20 +13,20 @@
     {% load static %}
     <link
       rel="shortcut icon"
-      href="{% static 'img/favicon.ico' type='image/x-icon' %}"
+      href="static/img/favicon.ico" type="image/x-icon"
     />
     <!-- Bootstrap CSS File -->
-    <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Libraries CSS Files -->
-    <link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
-    <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
-    <link href="{% static 'lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
-    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
-    <link href="{% static 'lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+    <link href="static/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="static/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="static/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="static/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
   
     <!-- Main Stylesheet File -->
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="static/css/style.css" rel="stylesheet">
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
@@ -115,7 +115,7 @@
                   '<h3 class="text-dark" id="firstHeading" class="firstHeading">'+  props.name+'</h3>'+
                   '<h6 class="text-dark text-center" id="firstHeading" class="firstHeading">' + 'Spot Type: ' + props.type + '</h6>' +
                   '<h6 class="text-dark my-2 mx-2 text-center" id="firstHeading" class="firstHeading">' + 'Description: ' + props.desc + '</h6>' +
-                  '<img class="mx-2 my-2" style="height: 100%; width: 100%;" border="0" align="center" itemprop="image" src="media/' + props.photo + '">' +
+                  '<img class="mx-2 my-2" style="height: 100%; width: 100%;" border="0" align="center" itemprop="image" src="' + props.photo + '">' +
                   '<div class="btn-group btn-group-justified">' +
                   '<a class="mx-2 my-2 text-center btn btn-outline-danger d-inline-block login_btn" href="/remove/' + props.id + '">Delete</a>' +
                   '<a class="mx-2 my-2 text-center btn btn-outline-primary d-inline-block login_btn" href="/edit/' + props.id + '">Edit</a>' +
@@ -156,7 +156,7 @@
             lng: {{ m.long }}
           },
             name: "{{ m.name }}",
-            photo: "{{m.photo}}",
+            photo: "{{m.photo.url}}",
             type: "{{ m.kind }}",
             desc: "{{ m.desc }}",
             id: "{{ m.id }}"
@@ -169,19 +169,19 @@
       defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADsKSJUx6DD63P26FsBj9BWC1vpByW1wo&callback=initMap"
     ></script>
-    <script src="{% static 'lib/jquery/jquery-migrate.min.js' %}"></script>
-    <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'lib/popper/popper.min.js' %}"></script>
-    <script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
-    <script src="{% static 'lib/counterup/jquery.waypoints.min.js' %}"></script>
-    <script src="{% static 'lib/counterup/jquery.counterup.js' %}"></script>
-    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
-    <script src="{% static 'lib/lightbox/js/lightbox.min.js' %}"></script>
-    <script src="{% static 'lib/typed/typed.min.js' %}"></script>
+    <script src="static/lib/jquery/jquery-migrate.min.js"></script>
+    <script src="static/lib/jquery/jquery.min.js"></script>
+    <script src="static/lib/popper/popper.min.js"></script>
+    <script src="static/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="static/lib/easing/easing.min.js"></script>
+    <script src="static/lib/counterup/jquery.waypoints.min.js"></script>
+    <script src="static/lib/counterup/jquery.counterup.js"></script>
+    <script src="static/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="static/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="static/lib/typed/typed.min.js"></script>
   
     <!-- Template Main Javascript File -->
-    <script src="{% static 'js/main.js' %}"></script>
+    <script src="static/js/main.js"></script>
   
   </body>
   </html>

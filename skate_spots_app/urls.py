@@ -1,7 +1,8 @@
+# from django.urls import path
 from django.conf.urls import url
-from . import views
 from django.conf.urls.static import static
 from django.conf import settings
+from . import views
 
 
 urlpatterns = [
@@ -22,5 +23,5 @@ urlpatterns = [
     url(r'^remove/(?P<spot_id>\d+)$', views.remove),
     url(r'^edit/(?P<spot_id>\d+)$', views.edit),
     url(r'^edit_spot/(?P<spot_id>\d+)$', views.edit_spot),
-    ]
-  # ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+# ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
