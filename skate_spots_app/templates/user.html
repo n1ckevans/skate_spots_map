@@ -13,20 +13,20 @@
     {% load static %}
     <link
       rel="shortcut icon"
-      href="static/img/favicon.ico" type="image/x-icon"
+      href="../static/img/favicon.ico" type="image/x-icon"
     />
     <!-- Bootstrap CSS File -->
-    <link href="static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Libraries CSS Files -->
-    <link href="static/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="static/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="static/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-    <link href="static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="static/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="../static/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../static/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="../static/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="../static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../static/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
   
     <!-- Main Stylesheet File -->
-    <link href="static/css/style.css" rel="stylesheet">
+    <link href="../static/css/style.css" rel="stylesheet">
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
@@ -65,7 +65,7 @@
               <a class="nav-link" href="/home">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/profile/{{user.id}}">Profile</a>
+              <a class="nav-link" href="/profile/{{user.id}}">Edit Profile</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/logout">Logout</a>
@@ -80,7 +80,6 @@
     <div
       id="home"
       class="intro route bg-image"
-      style="background-image: url(img/intro-bg.jpg)"
     >
       <div class="overlay-itro"></div>
       <div class="intro-content display-table">
@@ -100,10 +99,12 @@
               action="/update/{{user.id}}"
               method="post"
               enctype="multipart/form-data"
+              class="mx-4 my-4"
             >
               {% csrf_token %}
               <div class="input-group form-group mt-2">
-                <div class="d-block p-2 bg-dark text-white">
+                <div  style="background-color: black"
+                  class="d-block p-2 text-white">
                   <span>First Name:</span>
                 </div>
                 <input
@@ -114,7 +115,8 @@
                 />
               </div>
               <div class="input-group form-group">
-                <div class="d-block p-2 bg-dark text-white">
+                <div  style="background-color: black"
+                  class="d-block p-2 text-white">
                   <span>Last Name:</span>
                 </div>
                 <input
@@ -125,7 +127,8 @@
                 />
               </div>
               <div class="input-group form-group">
-                <div class="d-block p-2 bg-dark text-white">
+                <div  style="background-color: black"
+                  class="d-block p-2 text-white">
                   <span>Email:</span>
                 </div>
                 <input
@@ -136,7 +139,8 @@
                 />
               </div>
               <div class="input-group form-group">
-                <div class="d-block p-2 bg-dark text-white">
+                <div  style="background-color: black"
+                  class="d-block p-2 text-white">
                   <span>Birthday:</span>
                 </div>
                 <input
@@ -146,7 +150,8 @@
                 />
               </div>
               <div class="input-group form-group">
-                <div class="d-block p-2 bg-dark text-white">
+                <div  style="background-color: black"
+                  class="d-block p-2 text-white">
                   <span>Password:</span>
                 </div>
                 <input
@@ -157,7 +162,8 @@
                 />
               </div>
               <div class="input-group form-group">
-                <div class="d-block p-2 bg-dark text-white">
+                <div  style="background-color: black"
+                  class="d-block p-2 text-white">
                   <span>Confirm:</span>
                 </div>
                 <input
@@ -187,18 +193,18 @@
 
     <!-- JavaScript Libraries -->
 
-    <script src="static/lib/jquery/jquery-migrate.min.js"></script>
-    <script src="static/lib/jquery/jquery.min.js"></script>
-    <script src="static/lib/popper/popper.min.js"></script>
-    <script src="static/lib/bootstrap/js/bootstrap.min.js"></script>
-    <script src="static/lib/easing/easing.min.js"></script>
-    <script src="static/lib/counterup/jquery.waypoints.min.js"></script>
-    <script src="static/lib/counterup/jquery.counterup.js"></script>
-    <script src="static/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="static/lib/lightbox/js/lightbox.min.js"></script>
-    <script src="static/lib/typed/typed.min.js"></script>
+    <script src="../static/lib/jquery/jquery-migrate.min.js"></script>
+    <script src="../static/lib/jquery/jquery.min.js"></script>
+    <script src="../static/lib/popper/popper.min.js"></script>
+    <script src="../static/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/lib/easing/easing.min.js"></script>
+    <script src="../static/lib/counterup/jquery.waypoints.min.js"></script>
+    <script src="../static/lib/counterup/jquery.counterup.js"></script>
+    <script src="../static/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../static/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="../static/lib/typed/typed.min.js"></script>
 
     <!-- Template Main Javascript File -->
-    <script src="static/js/main.js"></script>
+    <script src="../static/js/main.js"></script>
   </body>
 </html>

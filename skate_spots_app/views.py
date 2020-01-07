@@ -124,7 +124,6 @@ def create(request):
 
         if form.is_valid():
             form.save()
-            messages.success(request, f'Your spot has been created!')
             return redirect("/home")
         else:
             form = MarkerForm()

@@ -44,7 +44,7 @@
       
       <div style="background-color: transparent"  class="card text-white">
         <div class="card-body text-center">
-          <span class="logo_title mt-5 text-primary h3">Register</span>
+          <span class="logo_title mt-5 text-white h3">Register</span>
           <form action="/register" method="post">
             {% csrf_token %}
             <div class="input-group form-group mt-2">
@@ -70,7 +70,7 @@
             </div>
 
             <div class="form-group">
-              <input type="submit" name="btn" value="Register" class="btn btn-outline-primary float-left login_btn">
+              <input style="background-color: black" type="submit" name="btn" value="Register" class="btn btn-outline-primary float-left login_btn">
             </div>
 
           </form>
@@ -79,25 +79,25 @@
 
       <div style="background-color: transparent"  class="card text-white">
         <div class="card-body text-center">
-          <span class="logo_title mt-5 text-primary h3">Login</span>
+          <span class="logo_title mt-5 text-white h3">Login</span>
           <form action="/login" method="post">
             {% csrf_token %}
             <div class="input-group form-group mt-2">
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-user"></i></span>
               </div>
-              <input type="text" name="email" class="form-control" placeholder="Email">
+              <input type="text" name="email" class="form-control" value="demo@demo.com">
             </div>
 
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-key"></i></span>
               </div>
-              <input type="password" name="password" class="form-control" placeholder="Password">
+              <input type="password" name="password" class="form-control" value="Password1!">
             </div>
 
             <div class="form-group">
-              <input type="submit" name="btn" value="Login" class="btn btn-outline-primary float-left login_btn">
+              <input style="background-color: black" type="submit" name="btn" value="Login" class="btn btn-outline-primary float-left login_btn">
             </div>
 
           </form>
