@@ -13,7 +13,7 @@ chardet==3.0.4
 colorama==0.4.1
 cookies==2.2.1
 cryptography==2.8
-Django==2.2.8
+Django==2.2.18
 django-s3-storage==0.13.0
 docker==4.1.0
 docutils==0.15.2
