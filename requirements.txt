@@ -22,7 +22,7 @@ future==0.18.2
 geolocation-python==0.2.2
 idna==2.8
 isort==4.3.21
-Jinja2==2.10.3
+Jinja2==2.11.3
 jmespath==0.9.4
 jsondiff==1.1.1
 jsonpickle==1.2
