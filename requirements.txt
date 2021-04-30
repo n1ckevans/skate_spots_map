@@ -54,7 +54,7 @@ six==1.13.0
 sqlparse==0.3.0
 timeago==1.0.10
 typed-ast==1.4.0
-urllib3==1.25.7
+urllib3==1.25.8
 websocket-client==0.57.0
 Werkzeug==0.16.0
 wrapt==1.11.2
